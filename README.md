@@ -2,9 +2,11 @@
 
 ## todo
 
-- create the Amount Agent
+- DONE create the Amount Agent
   - insert highest amount in the sorted list
   - get the highest amount (head)
+
+- get amount from agent when agent list is empty should return 0
 
 ## launch the db
 
