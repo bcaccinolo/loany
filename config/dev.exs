@@ -5,7 +5,7 @@ config :loany, Loany.Repo,
   username: "postgres",
   password: "postgres",
   database: "loany_dev",
-  hostname: "localhost",
+  hostname: "172.17.0.2",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
