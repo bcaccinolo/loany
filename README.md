@@ -6,9 +6,13 @@
   - insert highest amount in the sorted list
   - get the highest amount (head)
 
+## launch the db
 
+docker run --name pg_loany_test -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres  -e POSTGRES_DB=loany_test  postgres
 
-To start your Phoenix server:
+docker inspect pg_loany_test | ack IPAddress
+
+## To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
