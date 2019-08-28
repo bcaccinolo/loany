@@ -2,7 +2,18 @@ defmodule LoanyWeb.RequestsController do
   use LoanyWeb, :controller
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    changeset = Loany.Request.changeset(%Loany.Request{})
+    # changeset = Loany.Request.changeset(Loany.Repo.get(Loany.Request, 3))
+    render conn, "index.html", changeset: changeset
+  end
+
+  def create(conn, %{"request" => request}) do
+
+    IO.puts("passing there !!!")
+    IO.inspect(request)
+
+    changeset = Loany.Request.changeset(%Loany.Request{}, request)
+    render conn, "index.html", changeset: changeset
   end
 
   def accepted(conn, %{"id" => id}) do

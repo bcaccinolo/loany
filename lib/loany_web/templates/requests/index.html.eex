@@ -1,3 +1,26 @@
 <div class="phx-hero">
   <h2>Hello World, from Phoenix!</h2>
+
+
+
+  <%= form_for @changeset, Routes.requests_path(@conn, :create), fn f -> %>
+    <label>
+      Name: <%= text_input f, :name %>
+    </label>
+
+    <label>
+      Email: <%= text_input f, :email %>
+    </label>
+
+    <label>
+      Phone: <%= text_input f, :phone %>
+    </label>
+
+    <label>
+      Amount: <%= text_input f, :amount %>
+    </label>
+
+    <%= submit "Submit" %>
+  <% end %>
+
 </div>

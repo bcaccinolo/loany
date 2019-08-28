@@ -2,15 +2,31 @@
 
 ## todo
 
-- DONE create the Amount Agent
-  - insert highest amount in the sorted list
-  - get the highest amount (head)
+- ✅create the Amount Agent
+- ✅scoring with highest amount
+- ✅scoring with prime number calculation
+
+- Ecto
+- ✅add migrations
+- ✅add models
+
+- ✅route : GET /requests/id/accepted - basic page showing the data
+- ✅route : GET /requests/id/rejected - basic page showing the data
+
+- ✅creaion of basic form
+- 🔥persist the data
+- validate the data
 
 - get amount from agent when agent list is empty should return 0
 
+
+
 ## launch the db
 
-docker run --name pg_loany_test -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres  -e POSTGRES_DB=loany_test  postgres
+docker run --name pg_loany_test -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres  -e POSTGRES_DB=loany_test  postgres:10
+
+docker run --name pg_loany_test -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres postgres:10
+mix ecto.create
 
 docker inspect pg_loany_test | ack IPAddress
 

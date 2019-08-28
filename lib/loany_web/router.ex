@@ -18,6 +18,8 @@ defmodule LoanyWeb.Router do
 
     get "/", RequestsController, :index
 
+    post "/", RequestsController, :create
+
     get "/requests/:id/accepted", RequestsController, :accepted
     get "/requests/:id/rejected", RequestsController, :rejected
   end

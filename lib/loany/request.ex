@@ -13,8 +13,8 @@ defmodule Loany.Request do
   end
 
   @doc false
-  def changeset(%Request{} = request, attrs) do
+  def changeset(request, attrs \\ %{}) do
     request
-    |> cast(attrs, [:name, :email, :amount])
+    |> cast(attrs, [:name, :email, :phone, :amount])
   end
 end
