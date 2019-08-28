@@ -1,27 +1,35 @@
 defmodule Loany.Scoring do
+
   def evaluate(amount) do
-    with  {:ok} <- evaluate_higher_than_previous(amount),
-          {:ok} <- is_prime_number(amount)
-      do
-        {:ok, :loan_accepted}
-      else
-        {:error, response} -> {:error, response}
+    with {:ok} <- is_accepted?(amount),
+         {:ok, rate} <- get_rate(amount) do
+      {:ok, rate}
+    else
+      {:error, reason} -> {:error, reason}
     end
   end
 
-  def evaluate_higher_than_previous(amount) do
-    cond do
-      amount > Loany.AmountsAgent.get_highest_amount() -> {:ok}
-      true -> {:error, :loan_to_low}
+  def is_accepted?(amount) do
+    if amount > highest_last_amount() do
+      {:ok}
+    else
+      {:error, :loan_to_low}
     end
   end
 
-  def is_prime_number(amount) do
-    cond do
-      is_prime_number(amount, amount - 1) -> {:ok}
-      true -> {:error, :not_a_prime_number}
+  def highest_last_amount() do
+    Loany.AmountsAgent.get_highest_amount()
+  end
+
+  def get_rate(amount) do
+    if is_prime_number(amount) do
+      {:ok, 9.99}
+    else
+      {:ok, :rand.uniform(9) + 3}
     end
   end
+
+  def is_prime_number(amount), do: is_prime_number(amount, amount - 1)
 
   defp is_prime_number(x, _) when x <= 1, do: false
   defp is_prime_number(_, 1), do: true
