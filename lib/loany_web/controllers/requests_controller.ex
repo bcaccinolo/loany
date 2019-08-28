@@ -1,4 +1,4 @@
-defmodule LoanyWeb.PageController do
+defmodule LoanyWeb.RequestsController do
   use LoanyWeb, :controller
 
   def index(conn, _params) do

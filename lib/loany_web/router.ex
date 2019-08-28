@@ -16,7 +16,7 @@ defmodule LoanyWeb.Router do
   scope "/", LoanyWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", RequestsController, :index
   end
 
   # Other scopes may use custom stacks.
