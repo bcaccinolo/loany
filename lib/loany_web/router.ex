@@ -17,6 +17,9 @@ defmodule LoanyWeb.Router do
     pipe_through :browser
 
     get "/", RequestsController, :index
+
+    get "/requests/:id/accepted", RequestsController, :accepted
+    get "/requests/:id/rejected", RequestsController, :rejected
   end
 
   # Other scopes may use custom stacks.
