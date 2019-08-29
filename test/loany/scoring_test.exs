@@ -1,13 +1,12 @@
 defmodule Loany.ScoringTest do
   use ExUnit.Case
 
-  setup do
-    initial_state = [10_000, 5_000, 1_000]
-    {:ok, pid} = Loany.AmountsAgent.start_link(initial_state)
-    {:ok, pid: pid}
-  end
-
   describe "evaluate/1" do
+    setup do
+      Loany.AmountsAgent.init_state([10_000, 5_000, 1_000])
+      :ok
+    end
+
     test "amount is lower than preceding highest loan" do
       assert {:error, :loan_to_low} == Loany.Scoring.evaluate(5_000)
     end
@@ -18,7 +17,7 @@ defmodule Loany.ScoringTest do
 
     test "amount is the highest amount and NOT a prime number" do
       {:ok, rate} = Loany.Scoring.evaluate(60_000)
-      assert (rate >= 4) && (rate <= 12)
+      assert rate >= 4 && rate <= 12
     end
   end
 
