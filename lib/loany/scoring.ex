@@ -10,15 +10,17 @@ defmodule Loany.Scoring do
   end
 
   def is_accepted?(amount) do
-    if amount > highest_last_amount() do
-      {:ok}
-    else
-      {:error, :loan_to_low}
+    case amount > highest_last_amount() do
+      true -> Loany.AmountsAgent.add_amount(amount)
+              {:ok}
+      false -> {:error, :loan_to_low}
     end
   end
 
   def highest_last_amount() do
-    Loany.AmountsAgent.get_highest_amount()
+    amount = Loany.AmountsAgent.get_highest_amount()
+    IO.puts("highest amount is #{amount}")
+    amount
   end
 
   def get_rate(amount) do

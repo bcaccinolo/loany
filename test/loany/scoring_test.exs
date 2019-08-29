@@ -12,12 +12,16 @@ defmodule Loany.ScoringTest do
     end
 
     test "amount is the highest amount and a prime number" do
-      assert {:ok, 9.99} == Loany.Scoring.evaluate(59_981)
+      amount = 59_981
+      assert {:ok, 9.99} == Loany.Scoring.evaluate(amount)
+      assert amount == Loany.AmountsAgent.get_highest_amount()
     end
 
     test "amount is the highest amount and NOT a prime number" do
-      {:ok, rate} = Loany.Scoring.evaluate(60_000)
+      amount = 60_000
+      {:ok, rate} = Loany.Scoring.evaluate(amount)
       assert rate >= 4 && rate <= 12
+      assert amount == Loany.AmountsAgent.get_highest_amount()
     end
   end
 

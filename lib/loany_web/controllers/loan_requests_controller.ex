@@ -12,19 +12,16 @@ defmodule LoanyWeb.LoanRequestsController do
   end
 
   def create(conn, %{"loan_request" => loan_request}) do
-
-    IO.puts("passing there !!!")
-    IO.inspect(loan_request)
-
     changeset = LoanRequest.changeset(%LoanRequest{}, loan_request)
     %{amount: amount} = changeset.changes
 
-    {:ok, rate} = Loany.Scoring.evaluate(amount)
-    IO.puts("the rate is #{rate}")
+    {:ok, new_request} = Loany.Repo.insert(changeset)
 
-    {:ok, _new_request} = Loany.Repo.insert(changeset)
+    case Loany.Scoring.evaluate(amount) do
+      {:ok, rate} -> render(conn, "accepted.html", loan_request: new_request)
+      {:error, _} -> render(conn, "rejected.html", loan_request: new_request)
+    end
 
-    render(conn, "index.html", changeset: changeset)
   end
 
   def accepted(conn, %{"id" => id}) do
