@@ -11,11 +11,12 @@ defmodule LoanyWeb.LoanRequestsController do
     render(conn, "index.html", changeset: changeset)
   end
 
-  def create(conn, %{"request" => request}) do
-    IO.puts("passing there !!!")
-    IO.inspect(request)
+  def create(conn, %{"loan_request" => loan_request} = params) do
 
-    changeset = LoanRequest.changeset(%LoanRequest{}, request)
+    IO.puts("passing there !!!")
+    IO.inspect(loan_request)
+
+    changeset = LoanRequest.changeset(%LoanRequest{}, loan_request)
     IO.puts("is it valid? ")
     IO.inspect(changeset.valid?)
     Loany.Repo.insert(changeset)

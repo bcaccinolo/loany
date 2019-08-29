@@ -14,21 +14,22 @@
 - ✅route : GET /requests/id/rejected - basic page showing the data
 
 - ✅creaion of basic form
-- 🔥persist the data
+- ✅convert Request in LoanRequest
+- ✅persist the data
+
+- 🔥have the test using the service
+
 - validate the data
 
 - get amount from agent when agent list is empty should return 0
 
-
-
 ## launch the db
 
-docker run --name pg_loany_test -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres  -e POSTGRES_DB=loany_test  postgres:10
+docker run --name pg_loany -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres postgres:10
 
-docker run --name pg_loany_test -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres postgres:10
+docker inspect pg_loany | ack IPAddress
+
 mix ecto.create
-
-docker inspect pg_loany_test | ack IPAddress
 
 ## To start your Phoenix server:
 
