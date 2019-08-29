@@ -16,12 +16,12 @@ defmodule LoanyWeb.Router do
   scope "/", LoanyWeb do
     pipe_through :browser
 
-    get "/", RequestsController, :index
+    get "/", LoanRequestsController, :index
 
-    post "/", RequestsController, :create
+    post "/", LoanRequestsController, :create
 
-    get "/requests/:id/accepted", RequestsController, :accepted
-    get "/requests/:id/rejected", RequestsController, :rejected
+    get "/requests/:id/accepted", LoanRequestsController, :accepted
+    get "/requests/:id/rejected", LoanRequestsController, :rejected
   end
 
   # Other scopes may use custom stacks.

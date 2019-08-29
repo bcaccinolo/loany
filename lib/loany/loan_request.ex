@@ -1,7 +1,7 @@
-defmodule Loany.Request do
+defmodule Loany.LoanRequest do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Loany.Request
+  alias Loany.LoanRequest
 
   schema "requests" do
     field :name, :string
@@ -15,6 +15,6 @@ defmodule Loany.Request do
   @doc false
   def changeset(request, attrs \\ %{}) do
     request
-    |> cast(attrs, [:name, :email, :phone, :amount])
+    |> cast(attrs, [:name, :amount])
   end
 end

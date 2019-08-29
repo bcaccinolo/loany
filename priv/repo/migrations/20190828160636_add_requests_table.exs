@@ -1,8 +1,8 @@
-defmodule Loany.Repo.Migrations.AddRequestsTable do
+defmodule Loany.Repo.Migrations.AddLoanRequestsTable do
   use Ecto.Migration
 
   def change do
-    create table(:requests) do
+    create table(:loan_requests) do
       add :name, :string
       add :email, :string
       add :phone, :string
