@@ -1,4 +1,4 @@
 <div class='main'>
   <h1>Rejected 😿</h1>
-  <h2>Hello <%= @loan_request.name %></h2>
+  <h1>Try again in 3 second !</h1>
 </div>

@@ -9,12 +9,19 @@ defmodule Loany.LoanRequest do
     field :phone, :string
     field :amount, :integer
 
+    field :accepted, :boolean
+    field :rate, :float
+
     timestamps()
   end
 
-  @doc false
-  def changeset(request, attrs \\ %{}) do
+  def form_changeset(request, attrs \\ %{}) do
     request
     |> cast(attrs, [:name, :email, :phone, :amount])
+  end
+
+  def scoring_changeset(request, attrs \\ %{}) do
+    request
+    |> cast(attrs, [:accepted, :rate])
   end
 end

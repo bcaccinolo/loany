@@ -4,24 +4,33 @@ defmodule LoanyWeb.LoanRequestsController do
   alias Loany.LoanRequest
 
   def index(conn, _params) do
-
-    changeset = LoanRequest.changeset(%LoanRequest{})
-
-    # changeset = LoanRequest.changeset(Loany.Repo.get(LoanRequest, 3))
+    changeset = LoanRequest.form_changeset(%LoanRequest{})
     render(conn, "index.html", changeset: changeset)
   end
 
   def create(conn, %{"loan_request" => loan_request}) do
-    changeset = LoanRequest.changeset(%LoanRequest{}, loan_request)
+    changeset = LoanRequest.form_changeset(%LoanRequest{}, loan_request)
     %{amount: amount} = changeset.changes
 
-    {:ok, new_request} = Loany.Repo.insert(changeset)
+    result = Loany.Scoring.evaluate(amount)
 
-    case Loany.Scoring.evaluate(amount) do
-      {:ok, rate} -> render(conn, "accepted.html", loan_request: new_request)
-      {:error, _} -> render(conn, "rejected.html", loan_request: new_request)
-    end
+    scoring_updates =
+      case result do
+        {:ok, rate} -> %{accepted: true, rate: rate}
+        {:error, _} -> %{accepted: false}
+      end
 
+    changeset2 = LoanRequest.scoring_changeset(changeset, scoring_updates)
+
+    {:ok, new_request} = Loany.Repo.insert(changeset2)
+
+    template =
+      case new_request.accepted do
+        true -> "accepted.html"
+        false -> "rejected.html"
+      end
+
+    render(conn, template, loan_request: new_request)
   end
 
   def accepted(conn, %{"id" => id}) do

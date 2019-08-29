@@ -1,4 +1,10 @@
 <div class='main'>
   <h1>Accepted 🎉</h1>
-  <h2>Hello <%= @loan_request.name %></h2>
+
+  <h2>Nom <%= @loan_request.name %></h2>
+  <h2>Email <%= @loan_request.email %></h2>
+  <h2>Phone <%= @loan_request.phone %></h2>
+  <h2>Amount <%= @loan_request.amount %></h2>
+  <h2>Rate <%= @loan_request.rate %></h2>
+
 </div>

@@ -27,7 +27,8 @@ defmodule Loany.ScoringTest do
 
   describe "is_prime_number/1" do
     test "the amount is a prime number" do
-      assert Loany.Scoring.is_prime_number(59_957)
+      [2, 3, 5, 7, 11, 13, 17, 59_957]
+      |> Enum.each(fn x -> assert Loany.Scoring.is_prime_number(x) end)
     end
 
     test "the amount is NOT a prime number" do
