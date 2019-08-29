@@ -24,22 +24,22 @@ defmodule LoanyWeb.LoanRequestsController do
 
     {:ok, new_request} = Loany.Repo.insert(changeset2)
 
-    template =
+    state =
       case new_request.accepted do
-        true -> "accepted.html"
-        false -> "rejected.html"
+        true -> :accepted
+        false -> :rejected
       end
 
-    render(conn, template, loan_request: new_request)
+    redirect(conn, to: Routes.loan_requests_path(conn, state, new_request.id))
   end
 
   def accepted(conn, %{"id" => id}) do
-    request = Loany.Repo.get(LoanRequest, id)
-    render(conn, "accepted.html", request: request)
+    loan_request = Loany.Repo.get(LoanRequest, id)
+    render(conn, "accepted.html", loan_request: loan_request)
   end
 
   def rejected(conn, %{"id" => id}) do
-    request = Loany.Repo.get(LoanRequest, id)
-    render(conn, "rejected.html", request: request)
+    loan_request = Loany.Repo.get(LoanRequest, id)
+    render(conn, "rejected.html", loan_request: loan_request)
   end
 end
