@@ -1,0 +1,11 @@
+
+
+body {
+  background-image: linear-gradient(to right, #6035d9 , #d54ee6);
+}
+
+.title {
+  font-family: 'Comfortaa', cursive;
+  font-size: 30px;
+  font-weight: 700;
+}

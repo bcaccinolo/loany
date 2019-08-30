@@ -18,11 +18,19 @@ h6{font-size: 1.4rem; letter-spacing: 0; line-height: 1.2}
 
 .container{
   margin: 0 auto;
+  margin-bottom: 3rem;
+  background: #ffffff;
   max-width: 80.0rem;
-  padding: 0 2.0rem;
+  /* padding: 0 2.0rem; */
   position: relative;
-  width: 100%
+  /* width: 100%; */
+  padding: 2em;
+  border-radius: 6px;
+  font-weight: 200;
+  font-size: 120%;
+
 }
+
 select {
   width: auto;
 }
@@ -62,7 +70,7 @@ select {
 }
 
 /* Phoenix promo and logo */
-.phx-hero {
+.pphx-hero {
   text-align: center;
   border-bottom: 1px solid #e3e3e3;
   background: #eee;
