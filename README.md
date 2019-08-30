@@ -1,37 +1,49 @@
 # Loany
 
-## todo
+## Description of the development process
 
-- ✅create the Amount Agent
-- ✅scoring with highest amount
-- ✅scoring with prime number calculation
+I've started by implementing the business logic: the Scoring part.
+First I've done the Agent to store the amounts.
+Then I've implemented the Scoring service with the selection of the highest amount.
+Then the prime number calculation has been added.
 
-- Ecto
-- ✅add migrations
-- ✅add models
+After this the Phoenix part has been started.
+Migration & the entity has been created.
 
-- ✅route : GET /requests/id/accepted - basic page showing the data
-- ✅route : GET /requests/id/rejected - basic page showing the data
+Once this was working correctly, the routes has been defined.
+  - route : GET /requests/id/accepted
+  - route : GET /requests/id/rejected
 
-- ✅creaion of basic form
-- ✅convert Request in LoanRequest
-- ✅persist the data
+Hence the form has been created with  data persitence.
+Then the scoring logic has been added to the creation of the changeset.
 
-- 🔥have the test using the service
+When a basic system was running, data validation has been added.
+Then some styling has been added with the javascript redirection after 3 sec on the rejected page.
 
-- validate the data
+## How to launch the project ?
 
-- get amount from agent when agent list is empty should return 0
+### Setting the db
 
-## launch the db
+A dockerized version of PG is used:
+  - launch it with the command:
+`docker run --rm --name pg_loany -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres postgres:10`
 
-docker run --name pg_loany -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres postgres:10
+  - get the IP of the DB with the command:
+`docker inspect pg_loany | ack IPAddress`
 
-docker inspect pg_loany | ack IPAddress
+  - set the correct `hostname` of the db in the `dev.xs` and `test.ex`.
 
-mix ecto.create
+  - create the db with the command:
+`mix ecto.create`
 
-## To start your Phoenix server:
+  - run migrations:
+`mix phx.migrate`
+
+### Launch test
+
+Once the db is up, launch tests with `mix test`.
+
+### To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
@@ -39,13 +51,3 @@ mix ecto.create
   * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
