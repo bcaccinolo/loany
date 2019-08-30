@@ -15,3 +15,24 @@ import "phoenix_html"
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
+
+function countDown() {
+  const el = document.body.querySelector("span#timer_before_redirect"),
+        count = parseInt(el.textContent);
+
+  if (count > 0) {
+    el.textContent = count - 1;
+  } else {
+    window.location.href = "/";
+  }
+}
+
+document.onreadystatechange = function () {
+  if (document.readyState === 'complete') {
+    const el = document.body.querySelector("span#timer_before_redirect");
+
+    if (el !== null) {
+      setInterval(countDown, 1000);
+    }
+  }
+}

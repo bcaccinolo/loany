@@ -1,4 +1,4 @@
 <div class='main'>
   <h1>Rejected 😿</h1>
-  <h1>Try again in 3 second !</h1>
+  <h1>Try again in <span id='timer_before_redirect'>3</span> second !</h1>
 </div>
