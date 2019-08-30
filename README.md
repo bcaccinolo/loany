@@ -1,5 +1,7 @@
 # Loany
 
+![](./assets/static/images/shot.png)
+
 ## Description of the development process
 
 I've started by implementing the business logic: the Scoring part.
