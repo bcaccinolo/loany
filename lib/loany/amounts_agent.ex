@@ -2,12 +2,11 @@ defmodule Loany.AmountsAgent do
   use Agent
 
   def start_link(initial_state \\ [0]) do
-    IO.puts("Launching the Agent 🚨")
+    IO.puts("Launching the Agent")
     Agent.start_link(fn -> initial_state end, name: __MODULE__)
   end
 
   def add_amount(amount) do
-    IO.puts("adding #{amount}")
     Agent.update(__MODULE__, fn state -> [amount | state] end)
   end
 

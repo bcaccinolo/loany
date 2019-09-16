@@ -16,7 +16,7 @@ Once this was working correctly, the routes has been defined.
   - route : GET /requests/id/accepted
   - route : GET /requests/id/rejected
 
-Hence the form has been created with  data persitence.
+Hence the form has been created with data persitence.
 Then the scoring logic has been added to the creation of the changeset.
 
 When a basic system was running, data validation has been added.
@@ -33,13 +33,13 @@ A dockerized version of PG is used:
   - get the IP of the DB with the command:
 `docker inspect pg_loany | ack IPAddress`
 
-  - set the correct `hostname` of the db in the `dev.xs` and `test.ex`.
+  - set the correct `hostname` of the db in the `dev.exs` and `test.exs`.
 
   - create the db with the command:
 `mix ecto.create`
 
   - run migrations:
-`mix phx.migrate`
+`mix ecto.migrate`
 
 ### Launch test
 

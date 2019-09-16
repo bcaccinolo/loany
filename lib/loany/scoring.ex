@@ -19,7 +19,6 @@ defmodule Loany.Scoring do
 
   def highest_last_amount() do
     amount = Loany.AmountsAgent.get_highest_amount()
-    IO.puts("highest amount is #{amount}")
     amount
   end
 
